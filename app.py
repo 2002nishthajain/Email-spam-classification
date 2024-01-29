@@ -1,11 +1,12 @@
 import pickle
+import os
 from flask import Flask, render_template, request
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 app =  Flask(__name__)
-cv = pickle.load(open(r"D:\DELL\Documents\Codes\Python\Python files\flask\models\cv.pkl", "rb"))
-clf = pickle.load(open(r"D:\DELL\Documents\Codes\Python\Python files\flask\models\clf.pkl", "rb"))
-
+cv_path = os.path.join(script_dir, "models", "cv.pkl")
+clf_path = os.path.join(script_dir, "models", "clf.pkl")
 @app.route('/', methods=['GET','POST'])
 def home():
     text =""
